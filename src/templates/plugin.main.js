@@ -126,6 +126,11 @@ export default async (context) => {
   }
 
   const doDetectBrowserLanguage = () => {
+    // On server side the browser detection is ignored.
+    if (process.server) {
+      return false
+    }
+
     const { alwaysRedirect, fallbackLocale } = detectBrowserLanguage
 
     let matchedLocale
